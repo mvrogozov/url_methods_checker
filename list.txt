@@ -1,0 +1,5 @@
+https://stackoverflow.com/
+www.avito.ru
+strange_string.sd
+gmail.com
+not url string
