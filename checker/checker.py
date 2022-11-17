@@ -1,9 +1,8 @@
 #! /usr/bin/python3
 import argparse
-import sys
 import re
-import requests
 
+import requests
 
 METHODS = {
     'get': requests.get,
@@ -18,7 +17,10 @@ METHODS = {
 
 def check_urls(filename=''):
 
-    url_regex = re.compile(r'((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}([a-zA-Z0-9\.\&\/\?\:@\-_=#])*')
+    url_regex = re.compile(
+        r'((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}'
+        r'([a-zA-Z0-9\.\&\/\?\:@\-_=#])*'
+    )
 
     result = {}
     try:
@@ -42,7 +44,7 @@ def check_urls(filename=''):
                                 pass
                         if response:
                             if response.status_code != 405:
-                                result[url.group()][key]=response.status_code
+                                result[url.group()][key] = response.status_code
                 else:
                     print(f'Строка "{line}" не является ссылкой')
     except FileNotFoundError:
