@@ -19,6 +19,9 @@ result = {}
 
 
 def func_threads(url):
+    """
+    Запускает каждый метод запроса в отдельном потоке.
+    """
     checking_threads = []
     for name, method in METHODS.items():
         checking_thread = threading.Thread(
@@ -31,6 +34,10 @@ def func_threads(url):
 
 
 def check_url(url, name, method):
+    """
+    Делает запрос по заданным адресу и методу.
+    Результат сохраняет в словарь.
+    """
     result[url] = {}
     response = None
     if url.startswith('http'):
@@ -50,6 +57,9 @@ def check_url(url, name, method):
 
 
 def check_in_thread(filename=''):
+    """
+    Читает из файла строки и запускает проверку.
+    """
     url_regex = re.compile(
         r'((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}'
         r'([a-zA-Z0-9\.\&\/\?\:@\-_=#])*'
@@ -70,6 +80,10 @@ def check_in_thread(filename=''):
 
 
 def sort_result(result):
+    """
+    Сортирует словари в полученном результате.
+    Без сортировки тесты падают.
+    """
     new_result = {}
     for key, value in result.items():
         value = dict(sorted(value.items()))
